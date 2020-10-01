@@ -1,0 +1,5 @@
+## Examples
+
+| name      | snippet      |
+|-----------|--------------|
+| functions |              |

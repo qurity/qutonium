@@ -1,0 +1,37 @@
+[package]
+name = "qutonium"
+description = "simplify unit testing with a functional testing framework"
+license = "MIT"
+homepage = "https://github.com/qurity"
+readme = "README.md"
+repository = "https://github.com/qurity/qutonium"
+version = "0.1.1"
+authors = ["monsieurbadia <contact@monsieurbadia.com>"]
+edition = "2018"
+
+exclude = [
+  "examples/**/*",
+  "tmp/**/*",
+  "target/**/*",
+  "tests/**/*",
+  "Cargo.lock",
+]
+
+keywords = [
+  "unit",
+  "testing",
+  "qutonium",
+]
+
+[dependencies]
+miniserde = "0.1.13"
+qute = "0.0.11"
+
+[lib]
+name = "qutonium"
+doctest = false
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
