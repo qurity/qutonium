@@ -18,6 +18,15 @@ pub struct Report;
 
 
 impl Report {
+  pub fn print_suite_result<F> (suite: Suite, f: F)
+  where
+    F: FnOnce(Vec<Test>) + Sized
+  {
+    println!("\n{} {}", style_suite_label("SUITE"), suite.name);
+    f(suite.tests);
+    println!("{}", style_suite_label("END "));
+  }
+
   pub fn print_suite_stats (suite: Suite) {
     let suite_stats_failed = String::from(
       format!("  👎 failed: {}", suite.failed)
@@ -92,18 +101,11 @@ impl Report {
     }
   }
 
-  pub fn print_suite_result<F> (suite: Suite, f: F)
-  where
-    F: FnOnce(Vec<Test>) + Sized
-  {
-    println!("\n{} {}", style_suite_label("SUITE"), suite.name);
-    f(suite.tests);
-    println!("{}", style_suite_label("END "));
-  }
+
 
   pub fn print_test_result (test: &Test) {
     let mut test_result = Vec::<String>::new();
-
+    let test_tests_result = Report::parse_test_diagnostic_result(&test);
     let test_begin_label = String::from(format!(
       "  {} ", style_test_label("TEST")
     ));
@@ -123,10 +125,12 @@ impl Report {
     test_result.push(test_begin_label);      
     test_result.push(test_name);
     test_result.push(test_time);
-    test_result.push(Report::parse_test_diagnostic_result(&test));
+    test_result.push(test_tests_result);
     test_result.push(test_end_label);      
 
     println!("{}", test_result.join(""));
+
+    test_result.clear();
   }
 
   pub fn print_tests_result (tests: Vec<Test>) {

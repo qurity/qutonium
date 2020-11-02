@@ -5,25 +5,21 @@ mod tests {
 
 
   #[test]
-  fn from_assertions_using_expect () {
+  fn from_assertions () {
     suite!("the suite case name", {
       "test it should do something 1" || {
         fn square (x: u8) -> u8 { x * x }
 
         expect!(square(3)).to(be_equal(9))
       }
-    })
-  }
+    });
 
-
-  #[test]
-  fn from_assertions_using_must () {
     suite!("the suite case name", {
       "test it should do something 1" || {
         fn square (x: u8) -> u8 { x * x }
 
         must!(square(3); eq 9)
       }
-    })
+    });
   }
 }

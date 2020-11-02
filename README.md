@@ -29,6 +29,8 @@
 
 more examples [here](https://github.com/qurity/qutonium/tree/master/examples)   
 
+**basic syntax**
+
 ```rust
 fn main () {}
 
@@ -37,40 +39,32 @@ mod tests {
   extern crate qutonium;
   use qutonium::prelude::*;
 
+  #[test]
+  fn from_test () {
+    suite!("the suite case name ~basic", {
+      "compare integer" || {
+        expect!(2 + 2).to(be_equal(4));
+      }
+    });
+  }
+}
+```
+
+**sugar syntax**
+
+```rust
+fn main () {}
+
+#[cfg(test)]
+mod tests {
+  extern crate qutonium;
+  use qutonium::prelude::*;
 
   #[test]
   fn from_test () {
-    // basic syntax
-    suite!("the suite case name ~basic", {
-      "compare integer" || {
-        expect!(2 + 2).to(be_equal(4))?;
-        expect!(0).not(be_equal(1))
-      }
-
-      "compare boolean" || {
-        expect!(false).to(be_false())?;
-        expect!(true).to(be_true())
-      }
-
-      "testing should panic" || {
-        expect!(catch { panic!() }).to(abort())
-      }
-    });
-
-    // sugar syntax
     suite!("the suite case name ~sugar", {
       "compare integer" || {
-        must!(0; be 1)?;
-        must!(0; ne 1)
-      }
-
-      "compare boolean" || {
-        must!(false; be.falsy)?;
-        must!(true; be.truthy)
-      }
-
-      "testing should panic" || {
-        must!(catch panic!() to abort())
+        must!(2 + 2; be 4);
       }
     });
   }
@@ -124,6 +118,7 @@ END
 * [ ] helpful error messages
 * [ ] sugar syntax
 * [ ] no nested suites
+* [ ] inline stdout
 * [x] colorized terminal output | using [qute](https://github.com/qurity/qute) crate
 * [ ] `snapshot` diff | using [differences](https://github.com/johannhof/difference.rs) crate
 * [x] extended `matchers`
@@ -141,16 +136,16 @@ END
 
 **json**
 
-| handler | snippet                                                                |
-|---------|------------------------------------------------------------------------|
-| to_json | see more informations to about the export [here](./doc/export/json.md) |
+| handler | snippet                                                             |
+|---------|---------------------------------------------------------------------|
+| to_json | see more informations about the export [here](./doc/export/json.md) |
 
 ### Markers
 
 | marker | snippet                     |
 |---------|----------------------------|
-| to      | `expect!(0).to(matcher)`   |
-| not     | `expect!(1).not(matcher)`  |
+| to      | `expect!(expr).to(matcher)`   |
+| not     | `expect!(expr).not(matcher)`  |
 
 ### Matchers
 
@@ -158,16 +153,16 @@ END
 
 **boolean**
 
-| matcher   | snippet                           |
-|-----------|-----------------------------------|
-| be_false  | `expect!(0 == 1).to(be_false())`  |
-| be_true   | `expect!(0 == 0).to(be_true())`   |
+| matcher   | snippet                         |
+|-----------|---------------------------------|
+| be_false  | `expect!(expr).to(be_false())`  |
+| be_true   | `expect!(expr).to(be_true())`   |
 
 **common**
 
-| matcher     | snippet                                             |
-|-------------|-----------------------------------------------------|
-| be_equal    | `expect!("helloworld").to(be_equal("helloworld))`   |
+| matcher     | snippet                              |
+|-------------|--------------------------------------|
+| be_equal    | `expect!(expr).to(be_equal(expr))`   |
 
 ## <a name="license"></a> License   
 

@@ -9,9 +9,11 @@ mod tests {
 
   #[test]
   fn from_integers () {
-    suite!("describe suite test", {
-      "test it should do something 1" || {
-        expect!(0).to(be_equal(0))
+    suite!("integers", {
+      "compare values" || {
+        expect!(0).to(be_equal(0))?;
+        expect!(2 + 7).to(be_equal(9))?;
+        expect!(0 == 0).to(be_true())
       }
     });
   }

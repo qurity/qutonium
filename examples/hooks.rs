@@ -9,33 +9,33 @@ mod tests {
 
   #[test]
   fn from_hooks () {
-    suite!("describe suite test", {
+    suite!("hooks", {
       before:all {
-        println!("before:all")
+        println!("inside before:all!")
       }
   
       before:each {
-        println!("before:each")
+        println!("inside before:each!")
       }
   
       after:all {
-        println!("after:all")
+        println!("inside after:all!")
       }
   
       after:each {
-        println!("after:each")
+        println!("inside after:each!")
       };
 
-      "test it should do something 1" || {
-        fn square (x) { x * x }
+      "calculate square 3" || {
+        fn square (x: u8) -> u8 { x * x }
   
         expect!(square(3)).to(be_equal(9))
       }
 
-      "test it should do something 1" || {
-        fn square (x) { x * x }
+      "calculate square 7" || {
+        fn square (x: u8) -> u8 { x * x }
   
-        expect!(square(3)).to(be_equal(9))
+        expect!(square(7)).not(be_equal(9))
       }
     });
   }

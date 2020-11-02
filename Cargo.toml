@@ -5,11 +5,12 @@ license = "MIT"
 homepage = "https://github.com/qurity"
 readme = "README.md"
 repository = "https://github.com/qurity/qutonium"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["monsieurbadia <contact@monsieurbadia.com>"]
 edition = "2018"
 
 exclude = [
+  "doc/**/*",
   "examples/**/*",
   "tmp/**/*",
   "target/**/*",

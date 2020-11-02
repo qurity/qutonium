@@ -9,28 +9,28 @@ mod tests {
 
   #[test]
   fn from_must () {
-    suite!("the suite case name", {
-      "test it should do something 3" || {
+    suite!("using must macro", {
+      "compare boolean ~true" || {
         must!(true; be.truthy)
       }
   
-      "test it should do something 3" || {
+      "compare boolean ~false" || {
         must!(false; be.falsy)
       }
   
-      "calculate square" || {
-        fn square (x) { x * x }
+      "calculate square ~be" || {
+        fn square (x: u8) -> u8 { x * x }
   
         must!(square(3); be 9)
       }
   
-      "calculate square" || {
-        fn square (x) { x * x }
+      "calculate square ~ne" || {
+        fn square (x: u8) -> u8 { x * x }
   
         must!(square(3); ne 9)
       }
 
-      "testing should panic" || {
+      "testing panic" || {
         must!(catch { panic!() } to abort())
       }
     });

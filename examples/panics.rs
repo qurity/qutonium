@@ -9,7 +9,7 @@ mod tests {
 
   #[test]
   fn from_panics () {
-    suite!("the suite case name", {
+    suite!("panics", {
       "should panic" || {
         expect!(catch { panic!() }).to(abort())
       }
