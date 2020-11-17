@@ -7,12 +7,12 @@ mod tests {
   use qutonium::prelude::*;
 
 
-  #[derive(Clone, Copy, PartialEq)]
+  #[derive(Clone, Display, PartialEq)]
   struct Can {
     flavor: &'static str,
     ounces: u8,
   }
-  
+
   impl Can {
     pub fn new (flavor: &'static str, ounces: u8) -> Self {
       Can {

@@ -8,32 +8,28 @@ use miniserde::json;
 
 
 pub struct JSON {
+  pub output: String,
+  pub pathname: String,
   data: Suite,
-  filename: &'static str,
-  pathname: &'static str,
 }
 
 
 impl Exporter for JSON {
   fn new (data: Suite) -> Self {
     JSON {
+      output: "".into(),
+      pathname: "".into(),
       data,
-      filename: "",
-      pathname: "",
     }
   }
 
-  fn name (mut self, filename: &'static str) -> Self {
-    self.filename = filename;
-    self
-  }
-
-  fn path (mut self, pathname: &'static str) -> Self {
+  fn path (mut self, pathname: String) -> Self {
     self.pathname = pathname;
     self
   }
 
-  fn parse (self) -> String {
-    json::to_string(&self.data)
+  fn parse (mut self) -> Self {
+    self.output = json::to_string(&self.data);
+    self
   }
 }

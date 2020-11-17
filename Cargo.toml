@@ -1,12 +1,12 @@
 [package]
 name = "qutonium"
-description = "simplify unit testing with a functional testing framework"
-license = "MIT"
-homepage = "https://github.com/qurity"
-readme = "README.md"
-repository = "https://github.com/qurity/qutonium"
-version = "0.1.2"
+version = "0.1.6"
 authors = ["monsieurbadia <contact@monsieurbadia.com>"]
+description = "simplify unit testing with a functional testing framework 📈 "
+homepage = "https://github.com/qurity"
+repository = "https://github.com/qurity/qutonium"
+readme = "README.md"
+license = "MIT"
 edition = "2018"
 
 exclude = [
@@ -19,9 +19,13 @@ exclude = [
 ]
 
 keywords = [
-  "unit",
   "testing",
+  "framework",
   "qutonium",
+]
+
+categories = [
+  "development-tools::testing",
 ]
 
 [dependencies]

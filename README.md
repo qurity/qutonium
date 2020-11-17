@@ -19,7 +19,7 @@
 
 ---
 
-> *simplify unit testing with a minimal testing framework*
+> *simplify unit testing with a minimal testing framework* 📈 
 
 ## <a name="disclaimer"></a> DISCLAIMER
 
@@ -104,6 +104,15 @@ DIAGNOSTIC
 END
 ```
 
+## Usage
+
+Add the following to your Cargo.toml:
+
+```toml
+[dependencies]
+qutonium = "0.1.3"
+```
+
 ## <a name="goals"></a> Goals
 
 * [x] describe suite case | `suite!`
@@ -148,8 +157,6 @@ END
 | not     | `expect!(expr).not(matcher)`  |
 
 ### Matchers
-
-
 
 **boolean**
 

@@ -1,1 +1,1 @@
-{"failed":0,"name":"the suite case name","passed":1,"tests":[{"column":9,"diagnostic":"ok","file":"tests/assertions.rs","line":21,"name":"test it should do something 1","pass":true,"time_unit":{"micros":1,"millis":0,"nanos":1810,"secs":0}}],"time_unit_type":"Milliseconds","total":1}
+{"failed":1,"name":"main: using expect macro","passed":0,"tests":[{"column":7,"diagnostic":"received: 4 expected: 2","file":"src/main.rs","line":7,"name":"compare integer","pass":false,"time_unit":{"micros":21,"millis":0,"nanos":21586,"secs":0}}],"time_unit_type":"Milliseconds","total":1}

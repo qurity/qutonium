@@ -1,6 +1,6 @@
 ## JSON Format
 
-You don't need to used `to_json`. The json file will be automatically created into a `tmp` directory (it is a inline json). The example below is formatted using [jsonformatter.](https://jsonformatter.curiousconcept.com)   
+You don't need to used `to_json` for the moment. The json file will be automatically created into a `tmp` directory (it is a inline json). The example below is formatted using [jsonformatter.](https://jsonformatter.curiousconcept.com). with the `to_json` handler you will be able to configure each export file.     
 *`note:` create a `tmp` folder at the root application.*
 
 ```

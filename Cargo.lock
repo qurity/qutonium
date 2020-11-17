@@ -54,7 +54,7 @@ checksum = "6ad02e76fabdcea8e979d3d4f75aed57f35e1a995285e3d450a0be79692a189b"
 
 [[package]]
 name = "qutonium"
-version = "0.1.2"
+version = "0.1.6"
 dependencies = [
  "miniserde",
  "qute",

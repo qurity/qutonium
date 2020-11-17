@@ -15,10 +15,10 @@ pub struct Expect {
 }
 
 
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 pub struct ExpectCase<V>
 where
-  V: Clone + Copy + Debug + PartialEq + Sized + Sync
+  V: Clone + Debug + PartialEq
 {
   value: Matcherable<V>,
   source: Option<Source>,
@@ -27,7 +27,7 @@ where
 
 impl<V> ExpectCase<V>
 where
-  V: Clone + Copy + Debug + PartialEq + Sized + Sync
+  V: Clone + Debug + PartialEq
 {
   pub fn new (value: V) -> Self {
     ExpectCase {
@@ -37,11 +37,11 @@ where
   }
 
   pub fn not (&mut self, matcher: Matcherable<V>) -> Result<Expect, Expect> {
-    self.matching(self.value, matcher, Mark::Not)
+    self.matching(self.value.clone(), matcher, Mark::Not)
   }
 
   pub fn to (&mut self, matcher: Matcherable<V>) -> Result<Expect, Expect> {
-    self.matching(self.value, matcher, Mark::To)
+    self.matching(self.value.clone(), matcher, Mark::To)
   }
 
   pub fn source (mut self, source: Source) -> Self {
@@ -50,7 +50,7 @@ where
   }
 
   pub fn matching (
-    self,
+    &mut self,
     received: Matcherable<V>,
     expected: Matcherable<V>,
     mark: Mark

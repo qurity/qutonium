@@ -9,7 +9,7 @@ use std::fmt::Debug;
 
 pub trait Matcher<V>
 where
-  V: Debug + PartialEq + Sized + Sync
+  V: Clone + Debug + PartialEq
 {
   fn new (value: V) -> Self;
   fn fail (&self, expected: &Matcherable<V>,  mark: Mark) -> String;
@@ -17,10 +17,10 @@ where
 }
 
 
-#[derive(Clone, Copy, Eq, PartialEq)]
+#[derive(Eq, PartialEq)]
 pub struct Matcherable<V>
 where
-  V: Debug + PartialEq + Sized + Sync
+  V: Clone + Debug + PartialEq
 {
   pub value: V,
 }
@@ -32,9 +32,20 @@ impl_matcher!(Matcherable);
 #[macro_export]
 macro_rules! impl_matcher {
   ($s:tt) => {
+    impl<V> Clone for $s<V>
+    where
+      V: Clone + Debug + PartialEq
+    {
+      fn clone (&self) -> Self {
+        $s {
+          value: self.value.clone()
+        }
+      }
+    }
+
     impl<V> Matcher<V> for $s<V>
     where
-      V: Debug + PartialEq + Sized + Sync
+      V: Clone + Debug + PartialEq
     {
       #[inline]
       fn new (value: V) -> Self {
@@ -49,7 +60,7 @@ macro_rules! impl_matcher {
       #[inline]
       fn fail (&self, expected: &$s<V>, _mark: Mark) -> String {
         format!(
-          r"received: <{:?}> expected: <{:?}>",
+          "received: {:?} expected: {:?}",
           self.value, expected.value,
         )
       }

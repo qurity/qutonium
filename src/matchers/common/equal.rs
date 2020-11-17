@@ -6,7 +6,7 @@ use std::fmt::Debug;
 
 pub fn be_equal<V> (value: V) -> Matcherable<V>
 where
-  V: Clone + Copy + Debug + PartialEq + Sized + Sync
+  V: Clone + Debug + PartialEq
 {
   Matcherable::new(value)
 }
